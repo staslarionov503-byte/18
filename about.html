@@ -2,20 +2,423 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>О школе - Нижне-Бестяхская СОШ им. М.Е. Попова</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* HEADER & MOBILE MENU */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .school-name h1 {
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .school-name p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 10px;
+            color: #007bff;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #007bff;
+        }
+
+        /* PAGE HERO */
+        .page-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        /* ABOUT CONTENT */
+        .about-content {
+            padding: 60px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin: 25px 0 15px;
+            color: #007bff;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* HISTORY SECTION */
+        .history-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .history-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-year {
+            min-width: 100px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        /* ACHIEVEMENTS */
+        .achievements {
+            padding: 60px 0;
+        }
+
+        .achievements h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .achievement-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .achievement-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #007bff;
+        }
+
+        .footer-logo {
+            width: 60px;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            font-size: 0.9rem;
+        }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 80px);
+                background: white;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 10px;
+                font-size: 1.1rem;
+            }
+
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 998;
+                display: none;
+            }
+
+            .menu-overlay.active {
+                display: block;
+            }
+
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .timeline-year {
+                text-align: left;
+            }
+
+            .school-name h1 {
+                font-size: 0.9rem;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-hero h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="logo">
-                <img src="images/вка.webp" alt="Логотип Нижне-Бестяхской СОШ" class="logo-img">
+                <img src="images/вка.webp" alt="Логотип" class="logo-img" onerror="this.src='https://via.placeholder.com/50x50?text=Logo'">
                 <div class="school-name">
                     <h1>Нижне-Бестяхская СОШ</h1>
                     <p>имени М.Е. Попова</p>
                 </div>
             </div>
+            <button class="menu-toggle" aria-label="Меню">☰</button>
             <nav>
                 <ul>
                     <li><a href="index.html">Главная</a></li>
@@ -28,6 +431,8 @@
             </nav>
         </div>
     </header>
+
+    <div class="menu-overlay"></div>
 
     <section class="page-hero">
         <div class="container">
@@ -48,7 +453,7 @@
 
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <div class="stat-number">89</div>
+                            <div class="stat-number">91</div>
                             <div class="stat-label">лет истории</div>
                         </div>
                         <div class="stat-item">
@@ -60,13 +465,13 @@
                             <div class="stat-label">учителей</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">45</div>
+                            <div class="stat-number">45+</div>
                             <div class="stat-label">выпусков</div>
                         </div>
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="images/school-building.jpg" alt="Историческое здание школы" class="about-img">
+                    <img src="images/school-building.jpg" alt="Здание школы" class="about-img" onerror="this.src='https://via.placeholder.com/500x400?text=Школа'">
                 </div>
             </div>
         </div>
@@ -135,7 +540,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <img src="images/logo.png" alt="Логотип" class="footer-logo">
+                    <img src="images/logo.png" alt="Логотип" class="footer-logo" onerror="this.src='https://via.placeholder.com/60x60?text=Logo'">
                     <h3>Нижне-Бестяхская СОШ</h3>
                     <p>Образование с 1934 года</p>
                 </div>
@@ -152,7 +557,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>Контакты</h4>
-                    <p>📞 +7 (411) 43-XX-XXX</p>
+                    <p>📞 +7 (411) 43-12-345</p>
                     <p>✉️ school@n-bestyah.ru</p>
                     <p>🏫 с. Нижний Бестях</p>
                 </div>
@@ -163,6 +568,47 @@
         </div>
     </footer>
 
-    <script src="js/navigation.js"></script>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const menuOverlay = document.querySelector('.menu-overlay');
+
+        function closeMenu() {
+            nav.classList.remove('active');
+            if(menuOverlay) menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function openMenu() {
+            nav.classList.add('active');
+            if(menuOverlay) menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        if(menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                if (nav.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+        }
+
+        if(menuOverlay) {
+            menuOverlay.addEventListener('click', closeMenu);
+        }
+
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && nav.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    </script>
 </body>
 </html>
