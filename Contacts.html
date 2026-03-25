@@ -28,7 +28,7 @@
             text-align: center;
         }
 
-        /* HEADER */
+        /* HEADER & MOBILE MENU */
         header {
             background: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -521,7 +521,7 @@
     <header>
         <div class="container">
             <div class="logo">
-                <img src="images/вка.webp" alt="Логотип Нижне-Бестяхской СОШ" class="logo-img">
+                <img src="images/вка.webp" alt="Логотип Нижне-Бестяхской СОШ" class="logo-img" onerror="this.src='https://via.placeholder.com/50x50?text=Logo'">
                 <div class="school-name">
                     <h1>Нижне-Бестяхская СОШ</h1>
                     <p>имени М.Е. Попова</p>
@@ -738,17 +738,17 @@
 
         function closeMenu() {
             nav.classList.remove('active');
-            menuOverlay.classList.remove('active');
+            if(menuOverlay) menuOverlay.classList.remove('active');
             document.body.style.overflow = '';
         }
 
         function openMenu() {
             nav.classList.add('active');
-            menuOverlay.classList.add('active');
+            if(menuOverlay) menuOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        if (menuToggle) {
+        if(menuToggle) {
             menuToggle.addEventListener('click', () => {
                 if (nav.classList.contains('active')) {
                     closeMenu();
@@ -758,7 +758,7 @@
             });
         }
 
-        if (menuOverlay) {
+        if(menuOverlay) {
             menuOverlay.addEventListener('click', closeMenu);
         }
 
@@ -775,7 +775,7 @@
 
         // Обработка формы
         const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
+        if(contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
