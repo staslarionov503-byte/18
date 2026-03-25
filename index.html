@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - Нижне-Бестяхская СОШ им. М.Е. Попова</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+       
+        
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Стили для hero-секции с фоновым фото */
+        .hero {
+            position: relative;
+            height: 100vh; /* На всю высоту экрана */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            
+            /* Фоновое фото */
+            background-image: url('images/school.jpg');
+            background-size: cover;       /* Растягиваем на всю область */
+            background-position: center;  /* Центрируем фото */
+            
+        }
+        
+        /* Затемнение фона для лучшей читаемости */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Черный с прозрачностью 50% */
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Чтобы текст был поверх затемнения */
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Добро пожаловать в нашу школу!</h1>
+            <p>Качественное образование и всестороннее развитие</p>
+            <div class="hero-buttons">
+                <a href="about.html" class="btn">Узнать о школе</a>
+                <a href="contacts.html" class="btn">Контакты</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/вка.webp" alt="Логотип Нижне-Бестяхской СОШ" class="logo-img">
+                <div class="school-name">
+                    <h1>Нижне-Бестяхская СОШ</h1>
+                    <p>имени М.Е. Попова</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Главная</a></li>
+                    <li><a href="about.html">О школе</a></li>
+                    <li><a href="teachers.html">Учителя</a></li>
+                    <li><a href="students.html">Ученикам</a></li>
+                    <li><a href="lessons.html">Уроки</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Остальной код без изменений -->
+    <section class="features">
+        <div class="container">
+            <h2>Почему выбирают нашу школу?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Качественное образование</h3>
+                    <p>Высококвалифицированные педагоги и современные методики обучения</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏫</div>
+                    <h3>Современная инфраструктура</h3>
+                    <p>Новое оборудование, спортивные залы и уютные классы</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Дружеская атмосфера</h3>
+                    <p>Теплая и поддерживающая обстановка для каждого ученика</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="school-gallery">
+        <div class="container">
+            <h2>Наша школа в фотографиях</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/irjk.png" alt="Здание школы" class="gallery-img">
+                    <div class="gallery-caption">Главное здание школы</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/dsd.png" mages="Учебный класс" class="gallery-img">
+                    <div class="gallery-caption">Современный класс</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/ncdj.png" alt="Спортивный зал"  class="gallery-img">
+                    <div class="gallery-caption">Спортивный зал</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/fvfv.png" alt="Библиотека" class="gallery-img">
+                    <div class="gallery-caption">Школьная библиотека</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-preview">
+        <div class="container">
+            <h2>Последние новости</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-date">15.12.2023</div>
+                    <h3>Победа в олимпиаде</h3>
+                    <p>Ученики нашей школы заняли призовые места в районной олимпиаде по математике</p>
+                    <a href="#" class="news-link">Подробнее →</a>
+                </article>
+                <article class="news-card">
+                    <div class="news-date">10.12.2023</div>
+                    <h3>Новый спортивный зал</h3>
+                    <p>Завершен ремонт спортивного зала с современным оборудованием</p>
+                    <a href="#" class="news-link">Подробнее →</a>
+                </article>
+                <article class="news-card">
+                    <div class="news-date">05.12.2023</div>
+                    <h3>День открытых дверей</h3>
+                    <p>Приглашаем родителей и будущих учеников на день открытых дверей</p>
+                    <a href="#" class="news-link">Подробнее →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="images/logo.png" alt="Логотип" class="footer-logo">
+                    <h3>Нижне-Бестяхская СОШ</h3>
+                    <p>Образование с 1934 года</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="about.html">О школе</a></li>
+                        <li><a href="teachers.html">Учителя</a></li>
+                        <li><a href="students.html">Ученикам</a></li>
+                        <li><a href="lessons.html">Уроки</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>📞 +7 (411) 43-XX-XXX</p>
+                    <p>✉️ school@n-bestyah.ru</p>
+                    <p>🏫 с. Нижний Бестях</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Нижне-Бестяхская СОШ им. М.Е. Попова. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+</body>
+</html>
