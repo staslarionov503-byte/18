@@ -2,29 +2,35 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Уроки 10 класса - Нижне-Бестяхская СОШ</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            color: #333;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
-        /* Header Styles */
+        .text-center {
+            text-align: center;
+        }
+
+        /* HEADER & MOBILE MENU */
         header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -34,64 +40,73 @@
             z-index: 1000;
         }
 
-        .header-content {
+        header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 15px 20px;
+            flex-wrap: wrap;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
+            flex: 1;
         }
 
         .logo-img {
             width: 50px;
             height: 50px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
+            object-fit: contain;
         }
 
         .school-name h1 {
-            font-size: 1.4rem;
-            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 2px;
         }
 
         .school-name p {
-            font-size: 0.9rem;
-            color: #7f8c8d;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 10px;
+            color: #007bff;
+        }
+
+        nav {
+            display: flex;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 20px;
         }
 
-        nav a {
+        nav ul li a {
             text-decoration: none;
-            color: #2c3e50;
+            color: #333;
             font-weight: 500;
+            transition: all 0.3s ease;
             padding: 8px 16px;
             border-radius: 25px;
-            transition: all 0.3s ease;
         }
 
-        nav a:hover, nav a.active {
+        nav ul li a:hover,
+        nav ul li a.active {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            transform: translateY(-2px);
         }
 
-        /* Page Header */
+        /* PAGE HEADER */
         .page-header {
             text-align: center;
             margin: 40px 0;
@@ -99,7 +114,7 @@
         }
 
         .page-header h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
@@ -109,7 +124,7 @@
             opacity: 0.9;
         }
 
-        /* Lessons Grid */
+        /* LESSONS GRID */
         .lessons-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -120,11 +135,9 @@
         .subject-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
         }
 
         .subject-card:hover {
@@ -138,7 +151,7 @@
             gap: 15px;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #f8f9fa;
+            border-bottom: 2px solid #f0f0f0;
         }
 
         .subject-icon {
@@ -161,17 +174,16 @@
         .history { background: linear-gradient(45deg, #e67e22, #d35400); }
         .english { background: linear-gradient(45deg, #3498db, #2980b9); }
         .informatics { background: linear-gradient(45deg, #8e44ad, #9b59b6); }
-        .geography { background: linear-gradient(45deg, #1abc9c, #16a085); }
 
         .subject-title h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #2c3e50;
             margin-bottom: 5px;
         }
 
         .teacher {
             color: #7f8c8d;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .lessons-list {
@@ -179,40 +191,38 @@
         }
 
         .lesson-item {
-            padding: 12px 0;
-            border-bottom: 1px solid #f1f2f6;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
-        }
-
-        .lesson-item:last-child {
-            border-bottom: none;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .lesson-name {
-            flex: 1;
             font-weight: 500;
         }
 
         .lesson-date {
             color: #7f8c8d;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .materials {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
+            margin-top: 15px;
         }
 
         .material-link {
             padding: 8px 15px;
             background: #f8f9fa;
-            border-radius: 10px;
+            border-radius: 8px;
             text-decoration: none;
             color: #667eea;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             border: 1px solid #e9ecef;
         }
@@ -220,23 +230,22 @@
         .material-link:hover {
             background: #667eea;
             color: white;
-            transform: translateY(-2px);
         }
 
-        /* Schedule Section */
+        /* SCHEDULE SECTION */
         .schedule-section {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            padding: 40px;
+            padding: 30px;
             margin-bottom: 50px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             color: #2c3e50;
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
 
         .schedule-table {
@@ -245,42 +254,44 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-width: 600px;
         }
 
         .schedule-table th {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            padding: 15px;
+            padding: 12px;
             text-align: left;
+            font-size: 0.9rem;
         }
 
         .schedule-table td {
-            padding: 15px;
-            border-bottom: 1px solid #f1f2f6;
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
         }
 
         .schedule-table tr:hover {
             background: #f8f9fa;
         }
 
-        /* Footer */
+        /* FOOTER */
         footer {
-            background: rgba(255, 255, 255, 0.95);
+            background: #2c3e50;
+            color: white;
             padding: 40px 0 20px;
-            margin-top: 50px;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            gap: 40px;
             margin-bottom: 30px;
         }
 
-        .footer-section h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 15px;
         }
 
         .footer-section ul {
@@ -288,53 +299,134 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        .footer-section a {
-            color: #7f8c8d;
+        .footer-section ul li a {
+            color: #ecf0f1;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
 
-        .footer-section a:hover {
-            color: #667eea;
+        .footer-section ul li a:hover {
+            color: #007bff;
+        }
+
+        .footer-logo {
+            width: 60px;
+            margin-bottom: 10px;
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid #f1f2f6;
-            color: #7f8c8d;
+            border-top: 1px solid #34495e;
+            font-size: 0.9rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
+            .container {
+                padding: 0 15px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 80px);
+                background: white;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                left: 0;
             }
 
             nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 10px;
+                font-size: 1.1rem;
+                border-radius: 8px;
+            }
+
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 998;
+                display: none;
+            }
+
+            .menu-overlay.active {
+                display: block;
             }
 
             .page-header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .lessons-grid {
                 grid-template-columns: 1fr;
             }
 
-            .schedule-table {
+            .subject-header {
+                flex-wrap: wrap;
+            }
+
+            .lesson-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .school-name h1 {
                 font-size: 0.9rem;
             }
 
-            .schedule-table th,
-            .schedule-table td {
-                padding: 10px;
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .schedule-section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .subject-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .subject-title h3 {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -342,27 +434,28 @@
 <body>
     <header>
         <div class="container">
-            <div class="header-content" div>
-                <div class="logo">
-                    <div class="logo-img">НБ</div>
-                    <div class="school-name">
-                        <h1>Нижне-Бестяхская СОШ</h1>
-                        <p>имени М.Е. Попова</p>
-                    </div>
+            <div class="logo">
+                <img src="images/вка.webp" alt="Логотип" class="logo-img" onerror="this.src='https://via.placeholder.com/50x50?text=Logo'">
+                <div class="school-name">
+                    <h1>Нижне-Бестяхская СОШ</h1>
+                    <p>имени М.Е. Попова</p>
                 </div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Главная</a></li>
-                        <li><a href="about.html">О школе</a></li>
-                        <li><a href="teachers.html">Учителя</a></li>
-                        <li><a href="students.html">Ученикам</a></li>
-                        <li><a href="lessons.html" class="active">Уроки</a></li>
-                        <li><a href="contacts.html">Контакты</a></li>
-                    </ul>
-                </nav>
             </div>
+            <button class="menu-toggle" aria-label="Меню">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">О школе</a></li>
+                    <li><a href="teachers.html">Учителя</a></li>
+                    <li><a href="students.html">Ученикам</a></li>
+                    <li><a href="lessons.html" class="active">Уроки</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
+
+    <div class="menu-overlay"></div>
 
     <div class="container">
         <div class="page-header">
@@ -371,7 +464,6 @@
         </div>
 
         <div class="lessons-grid">
-            <!-- Математика -->
             <div class="subject-card">
                 <div class="subject-header">
                     <div class="subject-icon math">∫</div>
@@ -389,10 +481,6 @@
                         <span class="lesson-name">Геометрия - Стереометрия</span>
                         <span class="lesson-date">16.12</span>
                     </div>
-                    <div class="lesson-item">
-                        <span class="lesson-name">Начала анализа</span>
-                        <span class="lesson-date">18.12</span>
-                    </div>
                 </div>
                 <div class="materials">
                     <a href="#" class="material-link">Учебник</a>
@@ -401,7 +489,6 @@
                 </div>
             </div>
 
-            <!-- Русский язык -->
             <div class="subject-card">
                 <div class="subject-header">
                     <div class="subject-icon russian">Я</div>
@@ -419,10 +506,6 @@
                         <span class="lesson-name">Пунктуация в сложных конструкциях</span>
                         <span class="lesson-date">17.12</span>
                     </div>
-                    <div class="lesson-item">
-                        <span class="lesson-name">Стилистика русского языка</span>
-                        <span class="lesson-date">19.12</span>
-                    </div>
                 </div>
                 <div class="materials">
                     <a href="#" class="material-link">Учебник</a>
@@ -431,7 +514,6 @@
                 </div>
             </div>
 
-            <!-- Физика -->
             <div class="subject-card">
                 <div class="subject-header">
                     <div class="subject-icon physics">α</div>
@@ -449,10 +531,6 @@
                         <span class="lesson-name">Термодинамика</span>
                         <span class="lesson-date">18.12</span>
                     </div>
-                    <div class="lesson-item">
-                        <span class="lesson-name">Электродинамика</span>
-                        <span class="lesson-date">20.12</span>
-                    </div>
                 </div>
                 <div class="materials">
                     <a href="#" class="material-link">Учебник</a>
@@ -461,7 +539,6 @@
                 </div>
             </div>
 
-            <!-- Химия -->
             <div class="subject-card">
                 <div class="subject-header">
                     <div class="subject-icon chemistry">H₂O</div>
@@ -479,10 +556,6 @@
                         <span class="lesson-name">Углеводороды</span>
                         <span class="lesson-date">19.12</span>
                     </div>
-                    <div class="lesson-item">
-                        <span class="lesson-name">Химические реакции</span>
-                        <span class="lesson-date">21.12</span>
-                    </div>
                 </div>
                 <div class="materials">
                     <a href="#" class="material-link">Учебник</a>
@@ -491,7 +564,6 @@
                 </div>
             </div>
 
-            <!-- Информатика -->
             <div class="subject-card">
                 <div class="subject-header">
                     <div class="subject-icon informatics">{ }</div>
@@ -509,10 +581,6 @@
                         <span class="lesson-name">Алгоритмы и структуры данных</span>
                         <span class="lesson-date">18.12</span>
                     </div>
-                    <div class="lesson-item">
-                        <span class="lesson-name">Базы данных</span>
-                        <span class="lesson-date">20.12</span>
-                    </div>
                 </div>
                 <div class="materials">
                     <a href="#" class="material-link">Учебник</a>
@@ -521,7 +589,6 @@
                 </div>
             </div>
 
-            <!-- Английский язык -->
             <div class="subject-card">
                 <div class="subject-header">
                     <div class="subject-icon english">A</div>
@@ -539,10 +606,6 @@
                         <span class="lesson-name">Разговорная практика</span>
                         <span class="lesson-date">17.12</span>
                     </div>
-                    <div class="lesson-item">
-                        <span class="lesson-name">Аудирование</span>
-                        <span class="lesson-date">19.12</span>
-                    </div>
                 </div>
                 <div class="materials">
                     <a href="#" class="material-link">Учебник</a>
@@ -552,79 +615,25 @@
             </div>
         </div>
 
-        <!-- Расписание -->
         <div class="schedule-section">
             <h2 class="section-title">Расписание занятий</h2>
             <table class="schedule-table">
                 <thead>
                     <tr>
                         <th>Время</th>
-                        <th>Понедельник</th>
-                        <th>Вторник</th>
-                        <th>Среда</th>
-                        <th>Четверг</th>
-                        <th>Пятница</th>
-                        <th>Суббота</th>
+                        <th>Пн</th>
+                        <th>Вт</th>
+                        <th>Ср</th>
+                        <th>Чт</th>
+                        <th>Пт</th>
+                        <th>Сб</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>8:30-9:15</td>
-                        <td>Математика</td>
-                        <td>Русский язык</td>
-                        <td>Физика</td>
-                        <td>Химия</td>
-                        <td>Информатика</td>
-                        <td>Английский</td>
-                    </tr>
-                    <tr>
-                        <td>9:25-10:10</td>
-                        <td>Физика</td>
-                        <td>Математика</td>
-                        <td>Русский язык</td>
-                        <td>Английский</td>
-                        <td>Математика</td>
-                       <td>Физкультура</td>
-                       
-                    </tr>
-                    <tr>
-                        <td>10:30-11:15</td>
-                        <td>Английский</td>
-                        <td>Химия</td>
-                        <td>Математика</td>
-                        <td>Физика</td>
-                        <td>Русский язык</td>
-                        <td>Информатики</td>
-                    </tr>
-                    <tr>
-                        <td>11:35-12:20</td>
-                        <td>Информатика</td>
-                        <td>Физика</td>
-                        <td>Химия</td>
-                        <td>Математика</td>
-                        <td>Английский</td>
-                         <td>Физкультура</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>10:30-11:15</td>
-                        <td>Английский</td>
-                        <td>Химия</td>
-                        <td>Математика</td>
-                        <td>Физика</td>
-                        <td>Русский язык</td>
-                        <td>обществознания</td>
-                    </tr>
-                     <tr>
-                        <td>11:35-12:20</td>
-                        <td>Информатика</td>
-                        <td>Физика</td>
-                        <td>Химия</td>
-                        <td>Математика</td>
-                        <td>Английский</td>
-                        <td>Физкультура</td>
-                        
-                    </tr>
+                    <tr><td>8:30-9:15</td><td>Математика</td><td>Русский</td><td>Физика</td><td>Химия</td><td>Информ</td><td>Англ</td></tr>
+                    <tr><td>9:25-10:10</td><td>Физика</td><td>Математика</td><td>Русский</td><td>Англ</td><td>Математика</td><td>Физ-ра</td></tr>
+                    <tr><td>10:30-11:15</td><td>Англ</td><td>Химия</td><td>Математика</td><td>Физика</td><td>Русский</td><td>Информ</td></tr>
+                    <tr><td>11:35-12:20</td><td>Информ</td><td>Физика</td><td>Химия</td><td>Математика</td><td>Англ</td><td>Физ-ра</td></tr>
                 </tbody>
             </table>
         </div>
@@ -634,12 +643,12 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
+                    <img src="images/logo.png" alt="Логотип" class="footer-logo" onerror="this.src='https://via.placeholder.com/60x60?text=Logo'">
                     <h3>Нижне-Бестяхская СОШ</h3>
                     <p>Образование с 1934 года</p>
-                    <p>Качественное обучение и развитие</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Навигация</h3>
+                    <h4>Навигация</h4>
                     <ul>
                         <li><a href="index.html">Главная</a></li>
                         <li><a href="about.html">О школе</a></li>
@@ -650,8 +659,8 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Контакты</h3>
-                    <p>📞 +7 (411) 43-XX-XXX</p>
+                    <h4>Контакты</h4>
+                    <p>📞 +7 (411) 43-12-345</p>
                     <p>✉️ school@n-bestyah.ru</p>
                     <p>🏫 с. Нижний Бестях</p>
                 </div>
@@ -661,5 +670,48 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const menuOverlay = document.querySelector('.menu-overlay');
+
+        function closeMenu() {
+            nav.classList.remove('active');
+            if(menuOverlay) menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function openMenu() {
+            nav.classList.add('active');
+            if(menuOverlay) menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        if(menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                if (nav.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+        }
+
+        if(menuOverlay) {
+            menuOverlay.addEventListener('click', closeMenu);
+        }
+
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && nav.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    </script>
 </body>
 </html>
