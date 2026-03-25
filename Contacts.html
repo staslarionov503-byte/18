@@ -2,9 +2,520 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Контакты - Нижне-Бестяхская СОШ им. М.Е. Попова</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* HEADER */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .school-name h1 {
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .school-name p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 10px;
+            color: #007bff;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #007bff;
+        }
+
+        /* PAGE HERO */
+        .page-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        /* CONTACT INFO SECTION */
+        .contact-info-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .contact-info-section h2 {
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            padding: 60px 0;
+        }
+
+        .map-section h2 {
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        .map-container {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .map-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .map-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 30px;
+        }
+
+        .map-overlay h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* CONTACT FORM SECTION */
+        .contact-form-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-form-info h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-details h3 {
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        /* ADMINISTRATION SECTION */
+        .administration-section {
+            padding: 60px 0;
+        }
+
+        .administration-section h2 {
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        .administration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .admin-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .admin-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 30px auto 20px;
+            border: 3px solid #007bff;
+        }
+
+        .admin-card h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .admin-position {
+            color: #007bff;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .admin-contacts,
+        .admin-hours {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .admin-hours {
+            background: #f8f9fa;
+            margin-top: 10px;
+            padding: 15px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #007bff;
+        }
+
+        .footer-logo {
+            width: 60px;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            font-size: 0.9rem;
+        }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 80px);
+                background: white;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 10px;
+                font-size: 1.1rem;
+            }
+
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 998;
+                display: none;
+            }
+
+            .menu-overlay.active {
+                display: block;
+            }
+
+            .page-hero {
+                padding: 40px 0;
+            }
+
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-hero p {
+                font-size: 1rem;
+            }
+
+            .contact-form-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .contact-info-grid,
+            .administration-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-overlay {
+                padding: 15px;
+                position: relative;
+                background: #007bff;
+                color: white;
+            }
+
+            .map-overlay h3 {
+                font-size: 1.1rem;
+            }
+
+            .map-overlay p {
+                font-size: 0.9rem;
+            }
+
+            .contact-info-section h2,
+            .map-section h2,
+            .contact-form-info h2,
+            .administration-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .school-name h1 {
+                font-size: 0.9rem;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .contact-info-card {
+                padding: 20px;
+            }
+
+            .contact-form {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -16,6 +527,7 @@
                     <p>имени М.Е. Попова</p>
                 </div>
             </div>
+            <button class="menu-toggle" aria-label="Меню">☰</button>
             <nav>
                 <ul>
                     <li><a href="index.html">Главная</a></li>
@@ -28,6 +540,8 @@
             </nav>
         </div>
     </header>
+
+    <div class="menu-overlay"></div>
 
     <section class="page-hero">
         <div class="container">
@@ -49,16 +563,16 @@
                 <div class="contact-info-card">
                     <div class="contact-icon">📞</div>
                     <h3>Телефоны</h3>
-                    <p><strong>Директор:</strong> +7 (411) 43-XX-XXX<br>
-                       <strong>Секретарь:</strong> +7 (411) 43-XX-XXX<br>
-                       <strong>Учительская:</strong> +7 (411) 43-XX-XXX</p>
+                    <p><strong>Директор:</strong> +7 (411) 43-12-345<br>
+                       <strong>Секретарь:</strong> +7 (411) 43-12-346<br>
+                       <strong>Учительская:</strong> +7 (411) 43-12-347</p>
                 </div>
                 
                 <div class="contact-info-card">
                     <div class="contact-icon">✉️</div>
                     <h3>Электронная почта</h3>
-                    <p><strong>Директор:</strong> director@school.ru<br>
-                       <strong>Секретарь:</strong> info@school.ru<br>
+                    <p><strong>Директор:</strong> director@n-bestyah.ru<br>
+                       <strong>Секретарь:</strong> info@n-bestyah.ru<br>
                        <strong>Общие вопросы:</strong> school@n-bestyah.ru</p>
                 </div>
                 
@@ -77,7 +591,7 @@
         <div class="container">
             <h2 class="text-center">Как нас найти</h2>
             <div class="map-container">
-                <img src="images/map.jpg" alt="Карта проезда к школе" class="map-img">
+                <img src="images/map.jpg" alt="Карта проезда к школе" class="map-img" onerror="this.src='https://via.placeholder.com/1200x400?text=Карта+проезда'">
                 <div class="map-overlay">
                     <h3>Схема проезда</h3>
                     <p>Школа расположена в центре села Нижний Бестях. Рядом находятся администрация и культурный центр.</p>
@@ -98,17 +612,17 @@
                         <div class="contact-item">
                             <strong>Завуч по учебной работе:</strong><br>
                             Иванова М.П.<br>
-                            +7 (411) 43-XX-XXX
+                            +7 (411) 43-12-348
                         </div>
                         <div class="contact-item">
                             <strong>Социальный педагог:</strong><br>
                             Петрова С.М.<br>
-                            +7 (411) 43-XX-XXX
+                            +7 (411) 43-12-349
                         </div>
                         <div class="contact-item">
                             <strong>Психолог:</strong><br>
                             Сидорова О.В.<br>
-                            +7 (411) 43-XX-XXX
+                            +7 (411) 43-12-350
                         </div>
                     </div>
                 </div>
@@ -146,7 +660,7 @@
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">Отправить сообщение</button>
+                        <button type="submit" class="btn-primary">Отправить сообщение</button>
                     </form>
                 </div>
             </div>
@@ -158,26 +672,26 @@
             <h2 class="text-center">Администрация школы</h2>
             <div class="administration-grid">
                 <div class="admin-card">
-                    <img src="images/director.jpg" alt="Директор школы" class="admin-img">
+                    <img src="images/director.jpg" alt="Директор школы" class="admin-img" onerror="this.src='https://via.placeholder.com/150x150?text=Директор'">
                     <h3>Петров Иван Сергеевич</h3>
                     <p class="admin-position">Директор школы</p>
-                    <p class="admin-contacts">📞 +7 (411) 43-XX-XXX<br>✉️ director@school.ru</p>
+                    <p class="admin-contacts">📞 +7 (411) 43-12-345<br>✉️ director@n-bestyah.ru</p>
                     <p class="admin-hours">Приемные часы:<br>Пн, Ср 14:00-16:00</p>
                 </div>
 
                 <div class="admin-card">
-                    <img src="images/zavuch.jpg" alt="Завуч" class="admin-img">
+                    <img src="images/zavuch.jpg" alt="Завуч" class="admin-img" onerror="this.src='https://via.placeholder.com/150x150?text=Завуч'">
                     <h3>Иванова Мария Петровна</h3>
                     <p class="admin-position">Завуч по учебной работе</p>
-                    <p class="admin-contacts">📞 +7 (411) 43-XX-XXX<br>✉️ zavuch@school.ru</p>
+                    <p class="admin-contacts">📞 +7 (411) 43-12-348<br>✉️ zavuch@n-bestyah.ru</p>
                     <p class="admin-hours">Приемные часы:<br>Вт, Чт 15:00-17:00</p>
                 </div>
 
                 <div class="admin-card">
-                    <img src="images/secretary.jpg" alt="Секретарь" class="admin-img">
+                    <img src="images/secretary.jpg" alt="Секретарь" class="admin-img" onerror="this.src='https://via.placeholder.com/150x150?text=Секретарь'">
                     <h3>Сидорова Ольга Васильевна</h3>
                     <p class="admin-position">Секретарь</p>
-                    <p class="admin-contacts">📞 +7 (411) 43-XX-XXX<br>✉️ info@school.ru</p>
+                    <p class="admin-contacts">📞 +7 (411) 43-12-346<br>✉️ info@n-bestyah.ru</p>
                     <p class="admin-hours">Рабочие часы:<br>Пн-Пт 9:00-17:00</p>
                 </div>
             </div>
@@ -188,7 +702,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <img src="images/logo.png" alt="Логотип" class="footer-logo">
+                    <img src="images/logo.png" alt="Логотип" class="footer-logo" onerror="this.src='https://via.placeholder.com/60x60?text=Logo'">
                     <h3>Нижне-Бестяхская СОШ</h3>
                     <p>Образование с 1934 года</p>
                 </div>
@@ -205,7 +719,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>Контакты</h4>
-                    <p>📞 +7 (411) 43-XX-XXX</p>
+                    <p>📞 +7 (411) 43-12-345</p>
                     <p>✉️ school@n-bestyah.ru</p>
                     <p>🏫 с. Нижний Бестях</p>
                 </div>
@@ -216,13 +730,58 @@
         </div>
     </footer>
 
-    <script src="js/navigation.js"></script>
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
-            this.reset();
+        // Мобильное меню
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const menuOverlay = document.querySelector('.menu-overlay');
+
+        function closeMenu() {
+            nav.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function openMenu() {
+            nav.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                if (nav.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+        }
+
+        if (menuOverlay) {
+            menuOverlay.addEventListener('click', closeMenu);
+        }
+
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && nav.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+        // Обработка формы
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+                this.reset();
+            });
+        }
     </script>
 </body>
 </html>
